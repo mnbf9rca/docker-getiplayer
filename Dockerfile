@@ -8,7 +8,7 @@ EXPOSE 80
 
 ADD getiplayer.conf /root/getiplayer.conf
 
-RUN RUN export DEBCONF_NONINTERACTIVE_SEEN=true DEBIAN_FRONTEND=noninteractive && \
+RUN export DEBCONF_NONINTERACTIVE_SEEN=true DEBIAN_FRONTEND=noninteractive && \
 apt-get update && \
 apt-get install -y \
 software-properties-common \
