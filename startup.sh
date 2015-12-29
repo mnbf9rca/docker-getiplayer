@@ -8,6 +8,7 @@
     ln -s /config/zm/ /var/lib/mysql/zm/
     chown -R mysql:mysql /var/lib/mysql
     /usr/bin/zmupdate.pl
+    mysql -u root -e "grant select,insert,update,delete,create,alter,index,lock tables on zm.* to 'zmuser'@localhost identified by 'zmpass';"
   else
     echo "/config/zm not found or empty; creating symlink and creating DB"
     mkdir --parents /config/zm
@@ -15,6 +16,7 @@
     ln -s /config/zm/ /var/lib/mysql/zm/
     chown -R mysql:mysql /var/lib/mysql    
     mysql < /usr/share/zoneminder/db/zm_create.sql
+    mysql -u root -e "grant select,insert,update,delete,create,alter,index,lock tables on zm.* to 'zmuser'@localhost identified by 'zmpass';"
   fi
   
   #Get docker env timezone and set system timezone
