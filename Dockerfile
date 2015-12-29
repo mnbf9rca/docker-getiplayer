@@ -42,7 +42,7 @@ cp /root/getiplayer.conf /etc/apache2/conf-available/getiplayer.conf && \
 sed -i '/\<VirtualHost \*\:80\>/aInclude /etc/apache2/conf-available/getiplayer.conf\n' /etc/apache2/sites-available/000-default.conf && \
 a2enmod cgi && \
 service apache2 restart && \
-crontab -l | { cat; echo "57 0 * * * timed-process 21600 /var/www/get_iplayer/get_iplayer --type=radio,podcast,tv --modes=best --output=/home/robert/Downloads/iplayer/incomplete -pvr --nopurge --tag-cnid --tag-hdvideo --tag-podcast --tag-fulltitle --aactomp3 --file-prefix=\"<nameshort> <senum> <descshort>\""; } | crontab - && \
+crontab -l | { cat; echo "57 0 * * * timed-process 21600 /var/www/get_iplayer/get_iplayer --type=radio,podcast,tv --modes=best --output=/output/incomplete -pvr --nopurge --tag-cnid --tag-hdvideo --tag-podcast --tag-fulltitle --aactomp3 --file-prefix=\"<nameshort> <senum> <descshort>\""; } | crontab - && \
 crontab -l | { cat; echo "0 10 * * * timed-process 300 /var/www/get_iplayer/get_iplayer --update --plugins-update"; } | crontab - && \
 crontab -l | { cat; echo "@hourly rsync --recursive --remove-source-files --exclude=*.partial.* /output/incomplete/*.mp3 /output/mp3/ #copy MP3s"; } | crontab - && \
 crontab -l | { cat; echo "@hourly rsync --recursive --remove-source-files --exclude=*.partial.* /output/incomplete/*.mp4 /output/tv/ #move tv"; } | crontab - && \
