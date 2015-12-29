@@ -6,8 +6,8 @@ MAINTAINER mnbf9rca
 # /tmp for transcoding? not sure
 # /root/.get_iplayer/ -- was used before but not now?
 # /etc/get_iplayer/ = contains options file
-# /var/www/get_iplayer/.get_iplayer/pvr/ = configured PVR searches
-VOLUME ["/output", "/tmp", "/root/.get_iplayer/". "/etc/get_iplayer/", "/var/www/get_iplayer/.get_iplayer/pvr/"]
+# /root/.get_iplayer/pvr = configured PVR searches
+VOLUME ["/output", "/tmp", "/root/.get_iplayer/". "/etc/get_iplayer/", "/root/.get_iplayer/pvr"]
 
 EXPOSE 80
 
@@ -32,8 +32,9 @@ php5 \
 rsync \
 rtmpdump \
 wget && \
-mkdir -p /var/www/get_iplayer/output /var/www/get_iplayer/.get_iplayer && \
+mkdir -p /var/www/get_iplayer/output /var/www/get_iplayer/.get_iplayer /var/www/get_iplayer/.get_iplayer/pvr/ && \
 chown www-data:www-data /var/www/get_iplayer/output /var/www/get_iplayer/.get_iplayer && \
+ln -s /root/.get_iplayer/pvr /var/www/get_iplayer/.get_iplayer/pvr && \
 ln -s /usr/bin/get_iplayer /var/www/get_iplayer/ && \
 ln -s /usr/share/get_iplayer/get_iplayer.cgi /var/www/get_iplayer/ && \
 sed -i '/packagemanager apt/d' /etc/get_iplayer/options && \
