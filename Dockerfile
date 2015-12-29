@@ -2,7 +2,7 @@ FROM phusion/baseimage:0.9.18
 
 MAINTAINER mnbf9rca
 
-VOLUME ["/output", "/tmp", "/root/.get_iplayer/". "/etc/get_iplayer/"]
+VOLUME ["/output", "/tmp", "/root/.get_iplayer/". "/etc/get_iplayer/", "/var/www/get_iplayer/.get_iplayer/pvr/"]
 
 EXPOSE 80
 
