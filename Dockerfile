@@ -42,3 +42,6 @@ crontab -l | { cat; echo "@hourly rsync --recursive --remove-source-files --excl
 crontab -l | { cat; echo "@hourly rsync --recursive --remove-source-files --exclude=*.partial.* /output/incomplete/*.mp4 /output/tv/ #move tv"; } | crontab - && \
 crontab -l | { cat; echo "@hourly timed-process 900 /var/www/get_iplayer/get_iplayer --refresh --refresh-future --type=all --nopurge   #refresh get_iplayer cache"; } | crontab -
 
+# By default, simply start apache.
+CMD /usr/sbin/apache2ctl -D FOREGROUND
+
