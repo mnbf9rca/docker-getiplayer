@@ -2,10 +2,16 @@ FROM phusion/baseimage:0.9.18
 
 MAINTAINER mnbf9rca
 
+# /output = location of downloaded files
+# /tmp for transcoding? not sure
+# /root/.get_iplayer/ -- was used before but not now?
+# /etc/get_iplayer/ = contains options file
+# /var/www/get_iplayer/.get_iplayer/pvr/ = configured PVR searches
 VOLUME ["/output", "/tmp", "/root/.get_iplayer/". "/etc/get_iplayer/", "/var/www/get_iplayer/.get_iplayer/pvr/"]
 
 EXPOSE 80
 
+#apache configuration to serve get_iplayer.cgi at /iplayer
 ADD getiplayer.conf /root/getiplayer.conf
 
 RUN export DEBCONF_NONINTERACTIVE_SEEN=true DEBIAN_FRONTEND=noninteractive && \
