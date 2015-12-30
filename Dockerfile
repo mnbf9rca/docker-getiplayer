@@ -24,9 +24,14 @@ apt-get update && \
 apt-get install -y \
 apache2 \
 atomicparsley \
-libav-tools \
 get-iplayer \
 id3v2 \
+libav-tools \
+libauthen-sasl-perl \
+libmp3-info-perl \
+libmp3-tag-perl \
+libnet-smtp-ssl-perl \
+libnet-smtp-tls-perl \
 libproc-background-perl \
 php5 \
 rsync \
@@ -43,11 +48,13 @@ cp /root/getiplayer.conf /etc/apache2/conf-available/getiplayer.conf && \
 sed -i '/\<VirtualHost \*\:80\>/aInclude /etc/apache2/conf-available/getiplayer.conf\n' /etc/apache2/sites-available/000-default.conf && \
 a2enmod cgi && \
 service apache2 restart && \
-crontab -l | { cat; echo "57 0 * * * timed-process 21600 /var/www/get_iplayer/get_iplayer --type=radio,podcast,tv --modes=best --output=/output/incomplete -pvr --nopurge --tag-cnid --tag-hdvideo --tag-podcast --tag-fulltitle --aactomp3 --file-prefix=\"<nameshort> <senum> <descshort>\""; } | crontab - && \
-crontab -l | { cat; echo "0 10 * * * timed-process 300 /var/www/get_iplayer/get_iplayer --update --plugins-update"; } | crontab - && \
+crontab -l | { cat; echo "57 0,6,12,18 * * * timed-process 21600 /var/www/get_iplayer/get_iplayer --profile-dir /var/www/get_iplayer/.get_iplayer --hash --type=radio,podcast,tv --modes=best --output=/output/incomplete --pvr --nopurge --tag-cnid --tag-hdvideo --tag-podcast --tag-fulltitle --aactomp3 --file-prefix=\"<nameshort> <senum> <descshort>\"" \$GIP_OPTIONS; } | crontab - && \
+crontab -l | { cat; echo "0 10 * * * timed-process 300 /var/www/get_iplayer/get_iplayer --profile-dir /var/www/get_iplayer/.get_iplayer --update --plugins-update"; } | crontab - && \
 crontab -l | { cat; echo "@hourly rsync --recursive --remove-source-files --exclude=*.partial.* /output/incomplete/*.mp3 /output/mp3/ #copy MP3s"; } | crontab - && \
 crontab -l | { cat; echo "@hourly rsync --recursive --remove-source-files --exclude=*.partial.* /output/incomplete/*.mp4 /output/tv/ #move tv"; } | crontab - && \
-crontab -l | { cat; echo "@hourly timed-process 900 /var/www/get_iplayer/get_iplayer --refresh --refresh-future --type=all --nopurge   #refresh get_iplayer cache"; } | crontab -
+crontab -l | { cat; echo "@hourly timed-process 900 /var/www/get_iplayer/get_iplayer --profile-dir /var/www/get_iplayer/.get_iplayer --refresh --refresh-future --type=all --nopurge   #refresh get_iplayer cache"; } | crontab - && \
+chmod -R --silent go+rw /var/www/get_iplayer/.get_iplayer
+
 
 # By default, simply start apache.
 CMD /usr/sbin/apache2ctl -D FOREGROUND
