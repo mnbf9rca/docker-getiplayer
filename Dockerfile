@@ -4,10 +4,8 @@ MAINTAINER mnbf9rca
 
 # /output = location of downloaded files
 # /tmp for transcoding? not sure
-# /root/.get_iplayer/ -- was used before but not now?
-# /etc/get_iplayer/ = contains options file
-# /root/.get_iplayer/pvr = configured PVR searches
-VOLUME ["/output", "/tmp", "/root/.get_iplayer/". "/etc/get_iplayer/", "/root/.get_iplayer/pvr"]
+# /var/www/get_iplayer/.get_iplayer --> profile directory, including PVR searches and options
+VOLUME ["/output", "/tmp", "/var/www/get_iplayer/.get_iplayer"]
 
 EXPOSE 80
 
@@ -57,5 +55,6 @@ chmod -R --silent go+rw /var/www/get_iplayer/.get_iplayer
 
 
 # By default, simply start apache.
+# replace this with baseimage-docker's init system in future --> CMD ["/sbin/my_init"]
 CMD /usr/sbin/apache2ctl -D FOREGROUND
 
