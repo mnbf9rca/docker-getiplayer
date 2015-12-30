@@ -6,7 +6,7 @@ MAINTAINER mnbf9rca
 # /tmp for transcoding? not sure
 # /var/www/get_iplayer/.get_iplayer --> profile directory, including PVR searches and cache
 # /etc/get_iplayer --> options file stored here
-VOLUME ["/output", "/tmp", "/var/www/get_iplayer/.get_iplayer", "/etc/get_iplayer/options"]
+VOLUME ["/output", "/tmp", "/var/www/get_iplayer/.get_iplayer", "/etc/get_iplayer"]
 
 EXPOSE 80
 
