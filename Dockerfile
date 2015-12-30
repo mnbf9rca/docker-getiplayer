@@ -53,7 +53,6 @@ crontab -l | { cat; echo "0 10 * * * timed-process 300 /var/www/get_iplayer/get_
 crontab -l | { cat; echo "@hourly rsync --recursive --remove-source-files --exclude=*.partial.* /output/incomplete/*.mp3 /output/mp3/ #copy MP3s"; } | crontab - && \
 crontab -l | { cat; echo "@hourly rsync --recursive --remove-source-files --exclude=*.partial.* /output/incomplete/*.mp4 /output/tv/ #move tv"; } | crontab - && \
 crontab -l | { cat; echo "@hourly timed-process 900 /var/www/get_iplayer/get_iplayer --profile-dir /var/www/get_iplayer/.get_iplayer --refresh --refresh-future --type=all --nopurge   #refresh get_iplayer cache"; } | crontab - && \
-chmod -R --silent go+rw /var/www/get_iplayer/.get_iplayer && \
 chmod +x /etc/my_init.d/startup.sh
 
 
