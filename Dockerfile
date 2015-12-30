@@ -4,8 +4,9 @@ MAINTAINER mnbf9rca
 
 # /output = location of downloaded files
 # /tmp for transcoding? not sure
-# /var/www/get_iplayer/.get_iplayer --> profile directory, including PVR searches and options
-VOLUME ["/output", "/tmp", "/var/www/get_iplayer/.get_iplayer"]
+# /var/www/get_iplayer/.get_iplayer --> profile directory, including PVR searches and cache
+# /etc/get_iplayer --> options file stored here
+VOLUME ["/output", "/tmp", "/var/www/get_iplayer/.get_iplayer", "/etc/get_iplayer/options"]
 
 EXPOSE 80
 
@@ -42,7 +43,7 @@ ln -s /root/.get_iplayer/pvr /var/www/get_iplayer/.get_iplayer/pvr && \
 ln -s /usr/bin/get_iplayer /var/www/get_iplayer/ && \
 ln -s /usr/share/get_iplayer/get_iplayer.cgi /var/www/get_iplayer/ && \
 sed -i '/packagemanager apt/d' /etc/get_iplayer/options && \
-sed -i '$ aOUTPUT \/output/incomplete' /etc/get_iplayer/options && \
+sed -i '$ aoutput \/output/incomplete' /etc/get_iplayer/options && \
 cp /root/getiplayer.conf /etc/apache2/conf-available/getiplayer.conf && \
 sed -i '/\<VirtualHost \*\:80\>/aInclude /etc/apache2/conf-available/getiplayer.conf\n' /etc/apache2/sites-available/000-default.conf && \
 a2enmod cgi && \
