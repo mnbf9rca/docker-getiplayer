@@ -29,6 +29,7 @@ ffmpeg \
 get-iplayer \
 id3v2 \
 libauthen-sasl-perl \
+libcgi-fast-perl \
 libmp3-info-perl \
 libmp3-tag-perl \
 libnet-smtp-ssl-perl \
