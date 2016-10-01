@@ -14,8 +14,9 @@ EXPOSE 80
 ADD getiplayer.conf /root/getiplayer.conf
 COPY startup.sh /etc/my_init.d/startup.sh
 
-RUN export DEBCONF_NONINTERACTIVE_SEEN=true DEBIAN_FRONTEND=noninteractive && \
-apt-get update && \
+ENV DEBCONF_NONINTERACTIVE_SEEN=true DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && \
 apt-get install -y \
 software-properties-common \
 python-software-properties && \
