@@ -14,7 +14,7 @@ EXPOSE 80
 ADD getiplayer.conf /root/getiplayer.conf
 COPY startup.sh /etc/my_init.d/startup.sh
 
-ENV DEBCONF_NONINTERACTIVE_SEEN=true DEBIAN_FRONTEND=noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN=true DEBIAN_FRONTEND=noninteractive TERM="xterm" LC_ALL="C.UTF-8" LANG="en_US.UTF-8" LANGUAGE="en_US.UTF-8"
 
 RUN apt-get update && \
 apt-get install -y \
@@ -29,6 +29,7 @@ ffmpeg \
 get-iplayer \
 id3v2 \
 libauthen-sasl-perl \
+libcgi-perl \
 libmp3-info-perl \
 libmp3-tag-perl \
 libnet-smtp-ssl-perl \
