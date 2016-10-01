@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.18
+FROM phusion/baseimage:0.9.19
 
 MAINTAINER mnbf9rca
 
@@ -24,9 +24,9 @@ apt-get update && \
 apt-get install -y \
 apache2 \
 atomicparsley \
+ffmpeg \
 get-iplayer \
 id3v2 \
-libav-tools \
 libauthen-sasl-perl \
 libmp3-info-perl \
 libmp3-tag-perl \
