@@ -35,6 +35,7 @@ libnet-smtp-ssl-perl \
 libnet-smtp-tls-perl \
 libproc-background-perl \
 php \
+php-cgi \
 rsync \
 rtmpdump \
 wget && \
