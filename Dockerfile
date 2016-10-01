@@ -34,7 +34,7 @@ libmp3-tag-perl \
 libnet-smtp-ssl-perl \
 libnet-smtp-tls-perl \
 libproc-background-perl \
-php5 \
+php \
 rsync \
 rtmpdump \
 wget && \
