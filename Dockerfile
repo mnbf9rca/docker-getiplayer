@@ -28,6 +28,7 @@ atomicparsley \
 ffmpeg \
 get-iplayer \
 libcgi-fast-perl \
+libjson-pp-perl \
 libproc-background-perl \
 php \
 php-cgi \
