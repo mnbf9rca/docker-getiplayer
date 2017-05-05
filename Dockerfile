@@ -32,6 +32,7 @@ libmp3-info-perl \
 libmp3-tag-perl \
 libnet-smtp-ssl-perl \
 libnet-smtp-tls-perl \
+libjson-pp-perl \
 libproc-background-perl \
 php5 \
 rsync \
